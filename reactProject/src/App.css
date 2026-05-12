@@ -1,0 +1,10 @@
+body{
+  background-color:white;
+}
+
+.button{
+  color:white;
+  height:20px;
+  width:50px;
+  justify-content:center;
+}
