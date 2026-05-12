@@ -1,5 +1,6 @@
 export default function App() {
   return (
-    <div>This is a App</div>
+    <div>This is a Weather App</div>
+    
   )
 }
