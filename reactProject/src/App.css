@@ -4,10 +4,14 @@ body{
 }
 
 .header{
-  padding-bottom:10px;
+  padding-bottom:30px;
   height:60px;
   font-size:50px;
   background-color:aqua;
+}
+
+.main{
+  padding-top:30px;
 }
 
 .button{

@@ -8,7 +8,7 @@ export default function App() {
         Todo App
       </div>
     </header>
-    <div>
+    <div className="main">
       <div className="inputField">
         <input value="task" placeholder="Add Your Task"/>
         </div>
