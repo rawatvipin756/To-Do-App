@@ -1,6 +1,7 @@
 body{
   background-color:white;
   text-align:center;
+  border:1px solid black;
 }
 
 .header{
@@ -8,15 +9,23 @@ body{
   height:60px;
   font-size:50px;
   background-color:aqua;
+  display:flex;
+  justify-content:center;
 }
 
 .main{
   padding-top:30px;
+  display:flex;
+  justify-content:center;
+}
+
+.inputField{
+  opacity:0.8;
 }
 
 .button{
   color:black;
   text-decoration-color:white;
-  height:20px;
-  width:100px;
+  height:22px;
+  width:80px;
 }

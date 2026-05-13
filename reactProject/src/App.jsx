@@ -10,7 +10,7 @@ export default function App() {
     </header>
     <div className="main">
       <div className="inputField">
-        <input value="task" placeholder="Add Your Task"/>
+        <input placeholder="Add Your Task"/>
         </div>
       <div>
         <button className="button">
