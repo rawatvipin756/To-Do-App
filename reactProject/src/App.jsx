@@ -13,17 +13,12 @@ export default function App() {
         <input placeholder="Add Your Task"/>
         </div>
       <div>
-        <button className="button">
-          Add Task
-        </button>
+        <button className="button">Add Task</button>
       </div>
     </div>
     <div>
-      <p>first item</p>
+      <p>the list</p>
     </div>
-    <footer>
-      <p>Total Count =</p>
-    </footer>
     </>
   )
 }
