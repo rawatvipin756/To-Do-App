@@ -34,4 +34,9 @@ body{
 .list{
   display:flex;
   justify-content:center;
+  gap:10px;
+}
+
+.list li{
+  font-weight:500;
 }

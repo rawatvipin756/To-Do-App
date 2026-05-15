@@ -19,6 +19,12 @@ export default function App() {
     <div>
       <ul className="list">
         <li>the list</li>
+        <li>the list</li>
+        <li>the list</li>
+        <li>the list</li>
+        <li>the list</li>
+        <button>Mark As Done</button>
+        <button>Remove</button>
       </ul>
     </div>
     </>
