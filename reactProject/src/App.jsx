@@ -17,7 +17,9 @@ export default function App() {
       </div>
     </div>
     <div>
-      <p>the list</p>
+      <ul>
+        <li>the list</li>
+      </ul>
     </div>
     </>
   )
