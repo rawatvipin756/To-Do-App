@@ -3,7 +3,7 @@ import {useState,useEffect} from "react";
 
 export default function App() {
   return (
-    <>
+    <> 
     <header>
       <div className="header">
         Todo App
@@ -21,7 +21,7 @@ export default function App() {
       <ul className="list">
         <li>the list</li>
         <button>Mark As Done</button>
-        <button>Remove</button>
+        <button onClick="submit">Remove</button>
       </ul>
     </div>
     </>
