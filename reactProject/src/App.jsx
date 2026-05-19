@@ -21,7 +21,7 @@ export default function App() {
       <ul className="list">
         <li>the list</li>
         <button>Mark As Done</button>
-        <button onClick="submit">Remove</button>
+        <button>Remove</button>
       </ul>
     </div>
     </>
