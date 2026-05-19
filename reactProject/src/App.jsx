@@ -22,6 +22,10 @@ export default function App() {
         <li>the list</li>
         <button>Mark As Done</button>
         <button>Remove</button>
+        
+        <li>the list</li>
+        <button>Mark As Done</button>
+        <button>Remove</button>
       </ul>
     </div>
     </>
