@@ -1,32 +1,71 @@
-let input=document.getElementById("taskInput");
-let button=document.getElementById("addBtn");
-let list=document.getElementById("taskList");
+let input = document.getElementById("taskInput");
+let addBtn = document.getElementById("addBtn");
+let list = document.getElementById("taskList");
 
-function addTask(){
-    if (input.value.trim() != "") {
-        let li = document.createElement("li");
-        li.innerText = input.value.trim();
-        list.appendChild(li);
-        let deleteBtn=document.createElement("button");
-        deleteBtn.innerText = "Delete";
-        li.appendChild(deleteBtn);
-        deleteBtn.addEventListener("click",function() {
-            li.remove();
-        })
-        input.value = "";
-    }
-};
+// Load tasks from Local Storage
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-button.addEventListener("click",function () {
+// Create and display a task
+function createTask(taskText) {
+    let li = document.createElement("li");
+    li.innerText = taskText;
+
+    // Toggle completed
+    li.addEventListener("click", function () {
+        if (li.style.textDecoration === "line-through") {
+            li.style.textDecoration = "none";
+        } else {
+            li.style.textDecoration = "line-through";
+        }
+    });
+
+    // Delete button
+    let deleteBtn = document.createElement("button");
+    deleteBtn.innerText = "Delete";
+
+    deleteBtn.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevent line-through when clicking Delete
+
+        li.remove();
+
+        // Remove from array
+        tasks = tasks.filter(task => task !== taskText);
+
+        // Save updated array
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    });
+
+    li.appendChild(deleteBtn);
+    list.appendChild(li);
+}
+
+// Add a new task
+function addTask() {
+    let task = input.value.trim();
+
+    if (task === "") return;
+
+    tasks.push(task);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    createTask(task);
+
+    input.value = "";
+}
+
+// Load saved tasks
+tasks.forEach(function (task) {
+    createTask(task);
+});
+
+// Add button
+addBtn.addEventListener("click", function () {
     addTask();
 });
 
-input.addEventListener("keydown",function(event) {
-    if(event.key==="Enter"){
+// Enter key
+input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
         addTask();
     }
-});
-
-list.addEventListener("click",function() {
-    li.style.textDecoration = "line-through";
 });
