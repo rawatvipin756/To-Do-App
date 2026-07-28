@@ -1,0 +1,38 @@
+body{
+    max-width:900px;
+    width:90%;
+    border:1px solid black;
+    margin:auto;
+    height:700px;
+}
+.container{
+    max-width:600px;
+    width:90%;
+    border:3px solid blue;
+    margin:auto;
+    margin-top:10px;
+    text-align:center;
+    border-radius:15px;
+    background-color:black;
+}
+h1{
+    font-size:50px;
+    color:white;
+}
+#taskInput{
+    font-size:20px;
+    border-radius:10px;
+}
+#addBtn{
+    font-size:20px;
+    color:black;
+    background-color:blue;
+    border:none;
+}
+#heading{
+    font-size:30px;
+    color:white;
+}
+#taskList{
+    color:white;
+}
