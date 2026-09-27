@@ -27,14 +27,11 @@ function createTask(taskText) {
         event.stopPropagation(); // Prevent line-through when clicking Delete
 
         li.remove();
-
         // Remove from array
         tasks = tasks.filter(task => task !== taskText);
-
         // Save updated array
         localStorage.setItem("tasks", JSON.stringify(tasks));
     });
-
     li.appendChild(deleteBtn);
     list.appendChild(li);
 }
@@ -42,14 +39,10 @@ function createTask(taskText) {
 // Add a new task
 function addTask() {
     let task = input.value.trim();
-
     if (task === "") return;
-
     tasks.push(task);
     localStorage.setItem("tasks", JSON.stringify(tasks));
-
     createTask(task);
-
     input.value = "";
 }
 
