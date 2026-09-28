@@ -5,7 +5,16 @@ body{
     margin:auto;
     height:700px;
 }
-
+.container{
+    max-width:600px;
+    width:90%;
+    border:3px solid blue;
+    margin:auto;
+    margin-top:10px;
+    text-align:center;
+    border-radius:15px;
+    background-color:black;
+}
 h1{
     font-size:50px;
     color:white;
