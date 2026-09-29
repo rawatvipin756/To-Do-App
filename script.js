@@ -1,64 +1,107 @@
-let input = document.getElementById("taskInput");
-let addBtn = document.getElementById("addBtn");
-let list = document.getElementById("taskList");
+let inputText=document.getElementById("inputText");
+let addBtn=document.getElementById("addBtn");
+let taskList=document.getElementById("taskList");
+let comp=document.getElementById("comp");
 
-// Load tasks from Local Storage
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let completed=0;
+let uncompleted=0;
+let total=0;
 
-// Create and display a task
-function createTask(taskText) {
-    let li = document.createElement("li");
-    li.innerText = taskText;
-
-    // Toggle completed
-    li.addEventListener("click", function () {
-        if (li.style.textDecoration === "line-through") {
-            li.style.textDecoration = "none";
-        } else {
-            li.style.textDecoration = "line-through";
-        }
-    });
-
-    // Delete button
-    let deleteBtn = document.createElement("button");
-    deleteBtn.innerText = "Delete";
-
-    deleteBtn.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevent line-through when clicking Delete
-
-        li.remove();
-        // Remove from array
-        tasks = tasks.filter(task => task !== taskText);
-        // Save updated array
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    });
-    li.appendChild(deleteBtn);
-    list.appendChild(li);
+// storing in local storage
+let allTasks=[];
+let task=localStorage.getItem("allTask");
+if(task!==null){
+    allTasks=JSON.parse(task);
+    console.log(allTasks);
 }
 
-// Add a new task
-function addTask() {
-    let task = input.value.trim();
-    if (task === "") return;
-    tasks.push(task);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    createTask(task);
-    input.value = "";
+for(let i=0;i<allTasks.length;i++){
+    createTask(allTasks[i]);
 }
 
-// Load saved tasks
-tasks.forEach(function (task) {
-    createTask(task);
-});
+function createTask(task){
+    total++;
 
-// Add button
-addBtn.addEventListener("click", function () {
-    addTask();
-});
+    let text=document.createElement("p");
+    let editBtn=document.createElement("button");
+    let delBtn=document.createElement("button");
+    let checkbox=document.createElement("input");
+    let box=document.createElement("div");
 
-// Enter key
-input.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        addTask();
+    checkbox.type="checkbox";
+    checkbox.checked=task.completed;
+    if(task.completed){
+        completed++;
+        text.style.textDecoration="line-through";
     }
+    uncompleted=total-completed;
+    comp.innerText="Completed : " + completed + " | " + "Uncompleted : " + uncompleted;
+
+    checkbox.addEventListener("change",()=> {
+        if(checkbox.checked){
+            completed+=1;
+            uncompleted=total-completed;
+            text.style.textDecoration="line-through";
+        }else{
+            completed-=1;
+            uncompleted=total-completed;
+            text.style.textDecoration="none";
+        }
+        task.completed = checkbox.checked;
+
+        localStorage.setItem("allTask", JSON.stringify(allTasks));
+        comp.innerText="Completed : " + completed + " | " +  "Uncompleted : " + uncompleted;
+    });
+
+    text.innerText=task.text;
+    editBtn.innerText="Edit";
+    delBtn.innerText="Delete";
+
+    box.appendChild(checkbox);
+    box.appendChild(text);
+    box.appendChild(delBtn);
+    box.appendChild(editBtn);
+
+    taskList.appendChild(box);
+
+    editBtn.addEventListener("click",()=> {
+        let newText=prompt("Enter new value");
+        if(newText===null || newText.trim()===""){
+            return;
+        }
+        task.text=newText.trim();
+        text.innerText=newText;
+        localStorage.setItem("allTask",JSON.stringify(allTasks));
+    });
+
+    delBtn.addEventListener("click",()=> {
+        box.remove();
+        total-=1;
+        if(checkbox.checked){
+            completed-=1;
+        }
+        uncompleted=total-completed;
+        let index=allTasks.indexOf(task);
+        allTasks.splice(index,1);
+        localStorage.setItem("allTask", JSON.stringify(allTasks));
+        comp.innerText="Completed : " + completed + " | " +  "Uncompleted : " + uncompleted;
+    });
+}
+
+
+addBtn.addEventListener("click",()=> {
+    if(inputText.value.trim()===""){
+        alert("Please enter value");
+        return;
+    }
+    let newTask={
+        text:inputText.value.trim(),
+        completed:false
+    }
+    // storing in local storage
+    allTasks.push(newTask);
+    localStorage.setItem("allTask",JSON.stringify(allTasks));
+
+    createTask(newTask);
+    inputText.value="";
 });
