@@ -6,10 +6,6 @@ A simple and user-friendly Todo Application that helps users organize their dail
 
 [View Live Demo](https://to-do-app-sigma-tan.vercel.app/)
 
-## 📸 Screenshots
-
-![Todo App Screenshot](./screenshots/homepage.png)
-
 ## ✨ Features
 
 - Add new tasks.
